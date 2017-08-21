@@ -3,7 +3,6 @@ package com.alacriti.qaportal.bo.imp;
 import com.alacriti.qaportal.constants.ErrorConstants;
 import com.alacriti.qaportal.exception.BaseException;
 
-
 public class BOException extends BaseException {
 
 	public BOException() {

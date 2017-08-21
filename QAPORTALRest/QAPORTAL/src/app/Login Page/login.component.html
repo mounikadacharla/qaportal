@@ -1,0 +1,22 @@
+<div>
+  <div class="formDiv col-lg-4 col-lg-offset-4">
+    <form [formGroup] = "UserForm" (ngSubmit)="onSubmit()">
+      <div class="form-group col-lg-12">
+        <label >User Name:</label>
+        <input type="text" class="form-control "  formControlName="userName">
+      </div>
+      <div class="form-group col-lg-12">
+        <label >Password:</label>
+        <input type="password" class="form-control"  formControlName="password">
+      </div>
+        <div class="form-group col-lg-12">
+          <label>{{error}}</label>
+      </div>
+      <div class="form-group col-lg-12">
+        <button type="submit" class="btn btn-primary" this.userName="" this.password="">submit</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+

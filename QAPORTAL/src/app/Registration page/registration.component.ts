@@ -1,7 +1,8 @@
 
 import {Component,OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { RegistrationService} from "./registration.service"
+import { RegistrationService} from "./registration.service";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html'
@@ -16,7 +17,7 @@ export class RegistrationComponent{
     userName: new FormControl(),
     password: new FormControl()
   });
-  constructor(private _registrationService:RegistrationService,
+  constructor(private _registrationService:RegistrationService,private router:Router
               ){
 
   }
@@ -31,5 +32,6 @@ export class RegistrationComponent{
       this._registrationService.postData(this.userForm.value.firstName,this.userForm.value.lastName,this.userForm.value.emailId,this.userForm.value.userName,this.userForm.value.password)
         .subscribe(resRegistrationData=>this.postedData=JSON.stringify(resRegistrationData),
           resRegistrationError=>this.postError=resRegistrationError);
+      this.router.navigate(['./login']);
   }
 }

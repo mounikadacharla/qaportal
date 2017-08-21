@@ -2,29 +2,40 @@ package com.alacriti.qaportal.bo.imp;
 
 import java.sql.Connection;
 
+import org.apache.log4j.Logger;
+
 import com.alacriti.qaportal.dao.impl.DAOException;
 import com.alacriti.qaportal.dao.impl.LogFormDAO;
+import com.alacriti.qaportal.model.vo.LoginValidation;
 import com.alacriti.qaportal.model.vo.UserLoginVO;
 
 public class LoginBO extends BaseBO {
+	public static final Logger log= Logger.getLogger(LoginBO.class);
 	public LoginBO(Connection connection) {
 		super(connection);
 	}
-	public LoginBO(){
-		
+
+	public LoginBO() {
+
 	}
-	public boolean loginRoleBO(UserLoginVO loginDetails) throws DAOException, BOException{
-		boolean flag=false;
+
+	public LoginValidation loginRoleBO(UserLoginVO loginDetails) throws DAOException,
+			BOException {
+		log.debug("LoginBO====>loginRoleBO");
+		LoginValidation validation=null;
 		try {
-			LogFormDAO logFormDAO =   new LogFormDAO(getConnection());
+			LogFormDAO logFormDAO = new LogFormDAO(getConnection());
 			System.out.println("data working");
-			flag=logFormDAO.logInRole(loginDetails);
-			
+			validation= logFormDAO.logInRole(loginDetails);
+
+		} catch (DAOException e) {
+			log.error(e.getMessage());
+			throw new DAOException();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 			throw new BOException();
 		}
-		return flag;
+		return validation;
 	}
 
 }

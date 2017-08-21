@@ -4,14 +4,12 @@ import java.math.BigDecimal;
 
 import com.alacriti.qaportal.log.impl.AppLogger;
 
-
 /**
  * This class can be used for formatting strings.
  */
 public final class StringFormats {
 
 	/** The static logger */
-	
 
 	/** This will be used by the pad space function */
 	private String blankLine;
@@ -27,7 +25,7 @@ public final class StringFormats {
 	 * Simple Constructor
 	 */
 	public StringFormats(int max) {
-	
+
 		StringBuilder buffer = new StringBuilder(max);
 
 		for (int i = 0; i < max; i++) {
@@ -59,7 +57,7 @@ public final class StringFormats {
 	 * @return
 	 */
 	public static int getInt(String s) {
-		
+
 		if (s == null) {
 			return 0;
 		}
@@ -80,7 +78,7 @@ public final class StringFormats {
 	 * @return
 	 */
 	public static String getString(String s) {
-		
+
 		if (s == null) {
 			return "";
 		} else if ("null".equalsIgnoreCase(s.trim())) {
@@ -98,7 +96,7 @@ public final class StringFormats {
 	 * @return
 	 */
 	public static long getLong(String s) {
-		
+
 		if (s == null) {
 			return 0;
 		}
@@ -115,16 +113,17 @@ public final class StringFormats {
 	 * This method is for padding strings with characters
 	 */
 	public String pad(String aString, int reqLen, boolean padAtEnd) {
-		
+
 		String retVal;
 		String aStr = getString(aString);
 		int len = aStr.length();
 
 		if (len > reqLen) {
-			
+
 			retVal = aStr.substring(0, reqLen);
 		} else if ((blankLine == null) || ((reqLen - len) > blankLine.length())) {
-			throw new IllegalArgumentException("The StringFormat object cannot pad as the length specified is illegal");
+			throw new IllegalArgumentException(
+					"The StringFormat object cannot pad as the length specified is illegal");
 		} else if (padAtEnd) {
 			retVal = aStr + blankLine.substring(0, reqLen - len);
 		} else {
@@ -135,7 +134,7 @@ public final class StringFormats {
 	}
 
 	public static String convertBigDecimalToFxlAmount(BigDecimal bigDecimal) {
-	
+
 		String gsmAmt = "";
 		if (bigDecimal == null) {
 			bigDecimal = new BigDecimal("0.00");
@@ -148,7 +147,7 @@ public final class StringFormats {
 				bigDecimal = bigDecimal.negate();
 			}
 			value = bigDecimal.unscaledValue().toString() + "";
-			/*value = StringUtil.pad(value, 18, false, '0');*/
+			/* value = StringUtil.pad(value, 18, false, '0'); */
 			gsmAmt = precision + signBit + value;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -158,12 +157,13 @@ public final class StringFormats {
 	}
 
 	public static String convertBigDecimalAsFxlPercentage(BigDecimal bigDecimal) {
-		
+
 		return convertBigDecimalAsFxlPercentage(bigDecimal, null);
 	}
 
-	public static String convertBigDecimalAsFxlPercentage(BigDecimal bigDecimal, String defaultVal) {
-	
+	public static String convertBigDecimalAsFxlPercentage(
+			BigDecimal bigDecimal, String defaultVal) {
+
 		String gsmPecentageStr = "";
 		String indicator = "";
 		String integerVal = "";
@@ -176,34 +176,39 @@ public final class StringFormats {
 				indicator = bigDecimal.signum() == -1 ? "-" : "+";
 				bigDecimal = bigDecimal.negate();
 				integerVal = bigDecimal.longValue() + "";
-				/*integerVal = StringUtil.pad(integerVal, 8, false, '0');*/
-				BigDecimal deciBD = bigDecimal.subtract(new BigDecimal(bigDecimal.longValue()));
+				/* integerVal = StringUtil.pad(integerVal, 8, false, '0'); */
+				BigDecimal deciBD = bigDecimal.subtract(new BigDecimal(
+						bigDecimal.longValue()));
 				String decimalStr = deciBD.stripTrailingZeros().toPlainString();
 				decimalStr = decimalStr.substring(2);
-	/*			decimalVal = StringUtil.pad(decimalStr, 10, true, '0');*/
+				/* decimalVal = StringUtil.pad(decimalStr, 10, true, '0'); */
 			} else {
 				indicator = bigDecimal.signum() == -1 ? "-" : "+";
 				integerVal = bigDecimal.longValue() + "";
-				/*integerVal = StringUtil.pad(integerVal, 8, false, '0');*/
-				BigDecimal deciBD = bigDecimal.subtract(new BigDecimal(bigDecimal.longValue()));
+				/* integerVal = StringUtil.pad(integerVal, 8, false, '0'); */
+				BigDecimal deciBD = bigDecimal.subtract(new BigDecimal(
+						bigDecimal.longValue()));
 				String decimalStr = deciBD.stripTrailingZeros().toPlainString();
 				decimalStr = decimalStr.substring(2);
-				/*decimalVal = StringUtil.pad(decimalStr, 10, true, '0');*/
+				/* decimalVal = StringUtil.pad(decimalStr, 10, true, '0'); */
 			}
 			gsmPecentageStr = indicator + integerVal + decimalVal;
 		} catch (Exception e) {
-			e.printStackTrace();}
+			e.printStackTrace();
+		}
 		return gsmPecentageStr;
 	}
 
 	public static BigDecimal convertFxlAmountAsBigDecimal(String gsmAmt) {
-		
+
 		try {
 			if (!StringUtil.isEmpty(gsmAmt)) {
 				int precisionCnt = Integer.parseInt(gsmAmt.substring(0, 1));
-				boolean amtFlag = gsmAmt.substring(1, 2).equals("+") ? true : false;
+				boolean amtFlag = gsmAmt.substring(1, 2).equals("+") ? true
+						: false;
 				long value = Long.parseLong(gsmAmt.substring(2, 20));
-				return NumberUtils.getAmountBigDecimal(precisionCnt, amtFlag, value);
+				return NumberUtils.getAmountBigDecimal(precisionCnt, amtFlag,
+						value);
 			} else
 				return null;
 
@@ -217,10 +222,12 @@ public final class StringFormats {
 
 		try {
 			if (!StringUtil.isEmpty(gsmParcent)) {
-				boolean amtFlag = gsmParcent.substring(0, 1).equals("+") ? true : false;
+				boolean amtFlag = gsmParcent.substring(0, 1).equals("+") ? true
+						: false;
 				String integerVal = gsmParcent.substring(1, 9);
 				String decimalVal = gsmParcent.substring(9, 18);
-				return NumberUtils.getPercentageBigDecimal(amtFlag, integerVal, decimalVal);
+				return NumberUtils.getPercentageBigDecimal(amtFlag, integerVal,
+						decimalVal);
 			} else
 				return null;
 
@@ -249,7 +256,7 @@ public final class StringFormats {
 	 * @return
 	 */
 	public static double getDouble(String s) {
-		
+
 		if (s == null) {
 			return 0.0;
 		}
@@ -263,7 +270,7 @@ public final class StringFormats {
 	}
 
 	public static String convertAmtToCBAmtFormat(String amt, String sign) {
-	
+
 		String convertedAmt = null;
 		String[] comp = null;
 		String amtField = null;
@@ -281,7 +288,8 @@ public final class StringFormats {
 			else if (comp.length == 1)
 				inputPrec = 0;
 			else if (comp.length > 2)
-				throw new Exception("Invalid input format for the input string amt field");
+				throw new Exception(
+						"Invalid input format for the input string amt field");
 
 			else
 				inputPrec = comp[1].length();
@@ -305,8 +313,9 @@ public final class StringFormats {
 		}
 	}
 
-	public static String convertAmtToString(BigDecimal bigDecimal, int decimalPart) {
-	
+	public static String convertAmtToString(BigDecimal bigDecimal,
+			int decimalPart) {
+
 		String gsmAmt = "";
 		if (bigDecimal != null) {
 			try {
@@ -317,7 +326,7 @@ public final class StringFormats {
 					bigDecimal = bigDecimal.negate();
 				}
 				value = bigDecimal.unscaledValue().toString() + "";
-				/*value = StringUtil.pad(value, decimalPart, false, '0');*/
+				/* value = StringUtil.pad(value, decimalPart, false, '0'); */
 				gsmAmt = precision + signBit + value;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -328,7 +337,7 @@ public final class StringFormats {
 	}
 
 	public static String convertAmtToString(BigDecimal bigDecimal) {
-	
+
 		// FE message the amount field length is 20 (excluding sign &
 		// precision),
 		// for BE message amount field
@@ -338,15 +347,16 @@ public final class StringFormats {
 	}
 
 	public static String convertCBAmtToAmtFormat(String amt) {
-		
+
 		try {
-		
+
 			String lamt = amt.trim();
 			int prec = Integer.parseInt(lamt.substring(0, 1));
 			String sign = lamt.substring(1, 2);
 			String amtField = lamt.substring(2).trim();
 			boolean signFlag = sign.equals("+") ? true : false;
-			BigDecimal bdAmt = NumberUtils.getAmountBigDecimal(prec, signFlag, Long.parseLong(amtField));
+			BigDecimal bdAmt = NumberUtils.getAmountBigDecimal(prec, signFlag,
+					Long.parseLong(amtField));
 			// Double amount = Double.parseDouble(amtField) / Math.pow(10,
 			// prec);
 			return bdAmt.toPlainString();
@@ -357,9 +367,9 @@ public final class StringFormats {
 	}
 
 	public static String convertCBRateToRateFormat(String rate) {
-		
+
 		try {
-			
+
 			String bd = rate.substring(1, 9).trim();
 			String ad = rate.substring(9).trim();
 			return Double.parseDouble(bd + "." + ad) + "";
@@ -370,13 +380,17 @@ public final class StringFormats {
 		}
 	}
 
-	public static String convertInttypeToSignedIntegerFormat(int fieldLengthIncludeSignBit, int intValue) {
-		
+	public static String convertInttypeToSignedIntegerFormat(
+			int fieldLengthIncludeSignBit, int intValue) {
+
 		try {
 			String signedIntFormat = intValue > -1 ? "+" : "-";
-			/*signedIntFormat = signedIntFormat
-					.concat(StringUtil.pad(String.valueOf(intValue), fieldLengthIncludeSignBit - 1, false, '0'));*/
-			
+			/*
+			 * signedIntFormat = signedIntFormat
+			 * .concat(StringUtil.pad(String.valueOf(intValue),
+			 * fieldLengthIncludeSignBit - 1, false, '0'));
+			 */
+
 			return signedIntFormat;
 
 		} catch (Exception e) {
@@ -385,16 +399,18 @@ public final class StringFormats {
 		}
 	}
 
-	public static int convertSignedIntegerFormatToIntType(int fieldLengthIncludeSignBit, String intStr) {
-	
+	public static int convertSignedIntegerFormatToIntType(
+			int fieldLengthIncludeSignBit, String intStr) {
+
 		try {
 			String endIndexRequest = intStr;
-			endIndexRequest = endIndexRequest.startsWith("+") ? endIndexRequest.substring(1) : endIndexRequest;
+			endIndexRequest = endIndexRequest.startsWith("+") ? endIndexRequest
+					.substring(1) : endIndexRequest;
 			int intValue = Integer.parseInt(endIndexRequest);
-			
+
 			return intValue;
 		} catch (Exception e) {
-			
+
 			return 0;
 		}
 	}

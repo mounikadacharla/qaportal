@@ -6,43 +6,18 @@
   <title>QAPortal</title>
 </head>
 <body>
-<div>
-  <div class="navbar navbar-default top_header " >
+<div class="container-fluid">
+  <div class="navbar navbar-default top_header " id="navbarfixed" >
 
     <div class="navbar-header">
 
       <a class="navbar-brand" rel="home" href="/" title="">QAPortal</a>
     </div>
-  <table >
-    <tr>
-      <td>
-
-      </td>
-    </tr>
-  </table>
-<!--
-    <div class="input-group-btn">
-      <button type="submit"><i class="glyphicon glyphicon-search"></i></button>
-    </div>-->
-    <table align="center" border="3">
-      <tr>
-        <td width="96%" height="60%">
-          <input type="text"  class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-        </td>
-        <td>
-          <button type="submit"><i class="glyphicon glyphicon-search"></i></button>
-        </td>
-      </tr>
-    </table>
-   <!-- <div class="input-group" class="" >
-      <input type="text" style="width: 60%;" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-      <button type="submit"><i class="glyphicon glyphicon-search"></i></button>
-    </div>-->
     <div class="col-sm-3 col-md-3  pull-right">
       <form class="navbar-form"  role="search">
-        &nbsp;&nbsp;
-        <a routerLink="registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a>&nbsp;&nbsp;
-        <a routerLink="login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+        <a *ngIf="!this.isloggedin" routerLink="registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a>&nbsp;&nbsp;
+        <a *ngIf="!this.isloggedin" routerLink="login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+        <a *ngIf="this.isloggedin" (click)="logout()" routerLink="login"><span class="glyphicon glyphicon-log-in"></span> LogOut</a>
       </form>
     </div>
   </div>
@@ -50,14 +25,16 @@
     <div class="container-fluid">
 
       <ul class="nav navbar-nav">
-        <li><a href="#"> Home</a></li>
-
-
+        <li><a *ngIf="this.isloggedin" routerLink="home">Home</a></li>
       </ul>
-
     </div>
   </nav>
+
+<div class="displaypage">
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
+</div>
+
 </body>
 </html>
+

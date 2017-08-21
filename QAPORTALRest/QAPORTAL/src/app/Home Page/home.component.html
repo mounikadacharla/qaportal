@@ -1,0 +1,37 @@
+<div class="container-fluid">
+<div class="categories col-sm-2" style="margin:3%">
+<ul>
+    <li style="list-style: none;margin-left: 5px;margin-right: 5px" *ngFor="let category of categories">
+      <a routerLink="/home/topic/{{category.categoryName}}">{{category.categoryName}}</a>
+    </li>
+
+</ul>
+</div>
+<div class="col-sm-8">
+<button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Ask A Question</button>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <select #cate>
+          <option *ngFor="let category of categories" [value]="category.categoryId" class="category">{{category.categoryName}}</option>
+        </select>
+      </div>
+      <div class="modal-body">
+        <input type="text" name="question" #question>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-default" (click)="onSubmit(cate.value,question.value)">submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<div class="navbar-home">
+  <router-outlet></router-outlet>
+</div>
+</div>
+

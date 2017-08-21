@@ -19,7 +19,7 @@ public class ResponseFilter implements ContainerResponseFilter {
 	public void filter(ContainerRequestContext requestContext,
 			ContainerResponseContext responseContext) throws IOException {
 		// TODO Auto-generated method stub
-		responseContext.getHeaders().putSingle("Access-Control-Allow-Origin", "*");
+		responseContext.getHeaders().putSingle("Access-Control-Allow-Origin", "http://192.168.35.54:4200");
 		responseContext.getHeaders().putSingle("Access-Control-Allow-Credentials", "true");
 		responseContext.getHeaders().putSingle("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS, HEAD");
 		responseContext.getHeaders().putSingle("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");

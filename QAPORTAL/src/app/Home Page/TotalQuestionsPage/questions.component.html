@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div>
+<div class="sort">
+  <form id="demo-2">
+    <input type="search" placeholder="Search" class="form-control" #msgref (keyup)="SearchText(msgref.value)">
+  </form>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div *ngIf="questionsFlag">
+  <ul  style="margin-top:20px" *ngFor="let question of questions | paginate: { itemsPerPage: 5, currentPage: p }">
+
+    <li (click)="onQuestionClick(question)"> {{question.question}}</li>
+
+    <span>PostedTime:{{question.postedTime}} PostedBy:{{question.userName}}</span>
+
+  </ul>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+<div *ngIf="answersFlag">
+  <h3>{{question}}</h3>
+  <table>
+    <ul *ngFor="let answer of answers">
+      <li>{{answer.answer}}</li>
+
+      <span>PostedTime:{{answer.postedTime}} PostedBy:{{answer.userName}}</span>&nbsp;
+    </ul>
+
+    <button (click)="onClick()" class="btn btn-info btn-lg">Back</button>
+    <button (click)="onAnswerClick()" class="btn btn-primary btn-lg" style="margin-left:2px">Answer</button>
+  </table>
+
+</div>
+  </div>
+
+<div class="answers" *ngIf="postAnswerFlag">
+  <textarea #answer style="width:100%;height:60%;" data-dismiss="modal"></textarea>
+  <button id="subAns" (click)="onSubmitClick(answer.value)">Submit</button>
+  <button (click)="onCloseClick()" id="close">Close</button>
+</div>
+</div>
+  </div>
+</div>

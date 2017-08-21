@@ -6,9 +6,7 @@ import java.util.regex.Pattern;
 import com.alacriti.qaportal.constants.Constants;
 import com.alacriti.qaportal.model.vo.SampleVO;
 
-
 public class ValidationUtil {
-	
 
 	public static boolean isValidEmail(final String email) {
 		Pattern pattern;
@@ -29,8 +27,10 @@ public class ValidationUtil {
 
 		final String ipv4Regex = "(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])";
 		final String ipv6Regex = "([0-9a-f]{1,4}:){7}([0-9a-f]){1,4}";
-		Pattern ipv4Pattern = Pattern.compile(ipv4Regex, Pattern.CASE_INSENSITIVE);
-		Pattern ipv6Pattern = Pattern.compile(ipv6Regex, Pattern.CASE_INSENSITIVE);
+		Pattern ipv4Pattern = Pattern.compile(ipv4Regex,
+				Pattern.CASE_INSENSITIVE);
+		Pattern ipv6Pattern = Pattern.compile(ipv6Regex,
+				Pattern.CASE_INSENSITIVE);
 
 		Matcher ipv4Matcher = ipv4Pattern.matcher(ipAddress);
 
@@ -79,9 +79,11 @@ public class ValidationUtil {
 		return Pattern.matches(REGEX, num);
 	}
 
-	public static boolean isValidInteger(String num, int numOfDigits, int startsWith) {
+	public static boolean isValidInteger(String num, int numOfDigits,
+			int startsWith) {
 
-		String REGEX = "^(?=" + startsWith + ")[0-9]{" + Integer.toString(numOfDigits) + "}$";
+		String REGEX = "^(?=" + startsWith + ")[0-9]{"
+				+ Integer.toString(numOfDigits) + "}$";
 		return Pattern.matches(REGEX, num);
 	}
 
@@ -131,7 +133,8 @@ public class ValidationUtil {
 
 	public static boolean isValidUserName(String name, int min, int max) {
 		name = name.toLowerCase();
-		String REGEX = "^\\d*[a-zA-Z](?!\\s)[a-z\\s\\d;'&,\\.]{" + min + "," + max + "}$";
+		String REGEX = "^\\d*[a-zA-Z](?!\\s)[a-z\\s\\d;'&,\\.]{" + min + ","
+				+ max + "}$";
 		return Pattern.matches(REGEX, name);
 	}
 
@@ -185,7 +188,8 @@ public class ValidationUtil {
 
 	public static boolean isValidURL(String url, boolean isSecure) {
 		String secure = isSecure ? "s" : "s?";
-		String REGEX = "^(http" + secure
+		String REGEX = "^(http"
+				+ secure
 				+ "://)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)$";
 
 		return Pattern.matches(REGEX, url);
@@ -204,13 +208,15 @@ public class ValidationUtil {
 		return Pattern.matches(REGEX, accountHolderName);
 	}
 
-	public static boolean isValidText(int allowedLength, String regex, String text) {
+	public static boolean isValidText(int allowedLength, String regex,
+			String text) {
 		text = text.trim();
 		return Pattern.matches(regex, text) && text.length() <= allowedLength;
 	}
 
 	public static boolean isValidPrefix(String namePrefix) {
-		if (namePrefix.equalsIgnoreCase("Mr") || namePrefix.equalsIgnoreCase("Mrs")
+		if (namePrefix.equalsIgnoreCase("Mr")
+				|| namePrefix.equalsIgnoreCase("Mrs")
 				|| namePrefix.equalsIgnoreCase("Ms"))
 			return true;
 		else
@@ -239,7 +245,7 @@ public class ValidationUtil {
 	}
 
 	public static boolean isValidState(String state) {
-	
+
 		String regex = "\\w{2}";
 		if (StringUtil.isEmpty(state))
 			return false;
@@ -247,7 +253,7 @@ public class ValidationUtil {
 	}
 
 	public static boolean isValidCountry(String country) {
-		
+
 		String regex = "\\w{3}";
 		if (StringUtil.isEmpty(country))
 			return false;
@@ -309,7 +315,8 @@ public class ValidationUtil {
 		return Pattern.matches(regex, fundingAccountId);
 	}
 
-	public static boolean isValidOrderReferneceNumber(String chargeTraceReferneceNumber) {
+	public static boolean isValidOrderReferneceNumber(
+			String chargeTraceReferneceNumber) {
 
 		String regex = "[A-Za-z0-9-_]{0,50}";
 		if (StringUtil.isEmpty(chargeTraceReferneceNumber))
@@ -326,7 +333,8 @@ public class ValidationUtil {
 		return Pattern.matches(regex, chargeAmount);
 	}
 
-	public static boolean isValidAccountIssuingInstitutionName(String accountIssuingInstitutionName) {
+	public static boolean isValidAccountIssuingInstitutionName(
+			String accountIssuingInstitutionName) {
 
 		String regex = "\\w{0,50}";
 		if (StringUtil.isEmpty(accountIssuingInstitutionName))
@@ -366,7 +374,8 @@ public class ValidationUtil {
 		return Pattern.matches(regex, phoneNumber);
 	}
 
-	public static boolean isValidChargeAmountCurrency(String chargeAmountCurrency) {
+	public static boolean isValidChargeAmountCurrency(
+			String chargeAmountCurrency) {
 
 		String regex = "\\w{3}";
 		if (StringUtil.isEmpty(chargeAmountCurrency))
@@ -408,16 +417,18 @@ public class ValidationUtil {
 		if (len != 9) {
 			return false;
 		} else {
-			String newString = routingNumber.substring(routingNumber.length() - 1);
+			String newString = routingNumber
+					.substring(routingNumber.length() - 1);
 			checksum = Integer.parseInt(newString);
 
-			sum = (7 * (Integer.parseInt("" + routingNumber.charAt(0)) + Integer.parseInt("" + routingNumber.charAt(3))
-					+ Integer.parseInt("" + routingNumber.charAt(6))))
+			sum = (7 * (Integer.parseInt("" + routingNumber.charAt(0))
+					+ Integer.parseInt("" + routingNumber.charAt(3)) + Integer
+						.parseInt("" + routingNumber.charAt(6))))
 					+ (3 * (Integer.parseInt("" + routingNumber.charAt(1))
-							+ Integer.parseInt("" + routingNumber.charAt(4))
-							+ Integer.parseInt("" + routingNumber.charAt(7))))
-					+ (9 * (Integer.parseInt("" + routingNumber.charAt(2))
-							+ Integer.parseInt("" + routingNumber.charAt(5))));
+							+ Integer.parseInt("" + routingNumber.charAt(4)) + Integer
+								.parseInt("" + routingNumber.charAt(7))))
+					+ (9 * (Integer.parseInt("" + routingNumber.charAt(2)) + Integer
+							.parseInt("" + routingNumber.charAt(5))));
 
 			mod = sum % 10;
 
@@ -457,7 +468,7 @@ public class ValidationUtil {
 
 		return isCompleteAddress;
 	}
-	
+
 	public static boolean isvalidInteger(String initialRecords) {
 		if (StringUtil.isEmpty(initialRecords))
 			return false;
@@ -479,7 +490,7 @@ public class ValidationUtil {
 				|| Constants.SOURCE_TYPE_WITH_TOKEN.equals(sourceType)) {
 			return true;
 		} else {
-			
+
 			return false;
 		}
 	}

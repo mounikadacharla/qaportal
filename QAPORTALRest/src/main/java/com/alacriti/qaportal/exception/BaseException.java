@@ -10,7 +10,7 @@ import com.alacriti.qaportal.constants.ErrorConstants;
 import com.alacriti.qaportal.util.StringUtil;
 
 public class BaseException extends Exception {
-	
+
 	protected Throwable m_innerException;
 	protected String m_message = Constants.EMPTY_STRING;
 	protected String m_errorCode = ErrorConstants.ERR_GENERIC;
@@ -30,13 +30,13 @@ public class BaseException extends Exception {
 	 */
 
 	public String getErrorCode() {
-		
+
 		return m_errorCode;
 	}
 
 	@Override
 	public String getMessage() {
-		
+
 		return m_message;
 	}
 
@@ -46,16 +46,15 @@ public class BaseException extends Exception {
 	}
 
 	protected void setErrorCode(String errorCode) {
-		
+
 		m_errorCode = StringUtil.noNullTrim(errorCode);
 	}
 
 	public String returnStackTrace() {
-		
+
 		final Writer result = new StringWriter();
 		final PrintWriter printWriter = new PrintWriter(result);
 		this.printStackTrace(printWriter);
 		return result.toString();
 	}
 }
-

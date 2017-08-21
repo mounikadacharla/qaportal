@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div>
+<div class="sort">
+  <form id="demo-2">
+    <input type="search" placeholder="Search" class="form-control" #msgref (keyup)="SearchText(msgref.value)">
+  </form>
+</div>
+
+
+<div *ngIf="questionsFlag">
+  <ul *ngFor="let question of questions">
+
+    <li (click)="onQuestionClick(question)"> {{question.question}}</li>
+
+    <span>PostedTime:{{question.postedTime}}</span>
+
+  </ul>
+</div>
+<div *ngIf="answersFlag">
+  <h3>{{question}}</h3>
+  <table>
+    <ul *ngFor="let answer of answers">
+      <li>{{answer.answer}}</li>
+
+      <span>PostedTime:{{answer.postedTime}}</span>&nbsp;
+    </ul>
+
+    <button (click)="onClick()" class="btn btn-info btn-lg">Back</button>
+    <button (click)="onAnswerClick()" class="btn btn-primary btn-lg" style="margin-left:2px">Answer</button>
+  </table>
+
+</div>
+  </div>
+
+<div class="answers" *ngIf="postAnswerFlag">
+  <input  type="text"#answer >
+  <button id="subAns" (click)="onSubmitClick(answer.value)">Submit</button>
+  <button (click)="onCloseClick()" id="close">Close</button>
+</div>
+</div>

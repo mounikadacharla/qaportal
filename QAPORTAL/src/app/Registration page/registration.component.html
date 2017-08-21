@@ -4,19 +4,19 @@
       <form [formGroup]="userForm" (ngSubmit)="onsubmit()">
         <div class="form-group col-lg-12">
           <label>FirstName:</label>
-          <input type="text" class="form-control" formControlName="firstName">
+          <input type="text" class="form-control" formControlName="firstName" required>
         </div>
         <div class="form-group col-lg-12">
           <label>LastName:</label>
-          <input type="text" class="form-control" formControlName="lastName">
+          <input type="text" class="form-control" formControlName="lastName" required>
         </div>
         <div class="form-group col-lg-12">
           <label>Email:</label>
-          <input type="email" class="form-control" formControlName="emailId">
+          <input type="email" class="form-control" formControlName="emailId" required>
         </div>
         <div class="form-group col-lg-12">
           <label>UserName:</label>
-          <input type="text" class="form-control" formControlName="userName">
+          <input type="text" class="form-control" formControlName="userName" required>
         </div>
         <div class="form-group col-lg-12">
           <label>Password:</label>
@@ -24,37 +24,7 @@
         </div>
         <div class="form-group col-lg-12">
           <button type="submit" class="btn btn-primary" >submit</button>
+          <button type="reset" class="btn btn-primary" >Reset</button>
         </div>
       </form>
 </div>
-
-
-
-
-<!--
-<div class="container" >
-  <h4>Registration-Form</h4>
-  <table>
-    <div>
-  <form [formGroup]="userForm" (ngSubmit)="onsubmit()">
-    <div class="form-group">
-      <input type="text" class="form-control" formControlName="firstName" placeholder="FirstName">
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" formControlName="lastName" placeholder="LastName">
-    </div>
-    <div class="form-group">
-      <input type="email" class="form-control" formControlName="emailId" placeholder="Email">
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control" formControlName="userName" placeholder="UserName">
-    </div>
-    <div class="form-group">
-      <input type="password" class="form-control" formControlName="password" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">submit</button>
-  </form>
-    </div>
-  </table>
-</div>
--->

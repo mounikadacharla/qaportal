@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 @Injectable()
 export class RegistrationService{
-  private _urlPost:string= "http://localhost:8080/QAPORTAL-1.0-SNAPSHOT/adduser";
+  private _urlPost:string= "http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/adduser";
   constructor(private _http:Http){}
   postData(firstName,lastName,emailId,userName,password)
   {

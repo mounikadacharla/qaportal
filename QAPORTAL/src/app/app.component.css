@@ -9,4 +9,6 @@
   text-align:center;
   padding:200px;
 }
-
+.container-fluid{
+  position: fixed;
+}

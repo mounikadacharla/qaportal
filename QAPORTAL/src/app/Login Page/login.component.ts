@@ -11,6 +11,7 @@ export class LoginComponent {
   postedData : string;
   postError : string;
   error: string;
+  sid:any;
   UserForm = new FormGroup({
     userName: new FormControl(),
     password: new FormControl()
@@ -25,36 +26,25 @@ export class LoginComponent {
     // value=userForm.value;
     this._loginService.postData(this.UserForm.value.userName,this.UserForm.value.password)
       .subscribe(data => {
-          if ( data === true) {
+          if ( data.isValid === true) {
+            this.sid=data.sid;
+            window.localStorage.setItem("sid",this.sid)
             console.log("hello");
+            console.log(localStorage.getItem("sid"));
+
+            this._loginService.changes.next(true);
             this.router.navigate(['./home']);
           }
           else{
             this.error='invalid details';
+            console.log(this.error);
           }
         },
-        dataError => this.postError = dataError);
+        dataError => {this.postError = dataError;console.log(this.postError)});
 
-    /*subscribe(resLoginData=>this.postedData=JSON.stringify(resLoginData),
-        resLoginError=>this.postError=resLoginError);*/
+
 
   }
-
- /* public validateData(flag){
-
-
-    this._loginService.validateData()
-      .subscribe(data => {
-          if ( data === true) {
-            console.log("hello");
-            /!*this.router.navigate(['/home']);*!/
-          }
-        },
-        dataError => this.postError = dataError);
-
-
-  }*/
-
 
 }
 

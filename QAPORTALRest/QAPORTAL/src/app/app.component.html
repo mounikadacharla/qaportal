@@ -1,0 +1,39 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QAPortal</title>
+</head>
+<body>
+<div>
+  <div class="navbar navbar-default top_header " >
+
+    <div class="navbar-header">
+
+      <a class="navbar-brand" rel="home" href="/" title="">QAPortal</a>
+    </div>
+    <div class="col-sm-3 col-md-3  pull-right">
+      <form class="navbar-form"  role="search">
+        <a routerLink="registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a>&nbsp;&nbsp;
+        <a routerLink="login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+      </form>
+    </div>
+  </div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <ul class="nav navbar-nav">
+        <li><a routerLink="home">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="displaypage">
+    <router-outlet></router-outlet>
+</div>
+</div>
+
+</body>
+</html>
+

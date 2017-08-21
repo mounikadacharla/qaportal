@@ -1,0 +1,152 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+/*  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;*/
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form {
+  color: #4CAF50;
+  text-decoration: none;
+  padding: 20px;
+}
+.formDiv{
+  margin-top: 10%;
+  border:1px solid #eee;
+  background-color: white;
+  padding: 2%;
+}
+.center{
+  margin-left:32%;
+  margin-right:auto;
+  display:block;
+  margin-top:16%;
+  margin-bottom:0%
+}
+body{
+
+}
+.navbar navbar-default top_header{
+  position:fixed;
+}
+.top_header{
+  background:#272cbc;
+}
+.navbar-brand{
+  color: white !important;
+  font-size:1000px;
+}
+.top_header a{
+  color: white !important;
+  font-size: 20px;
+}
+.navbar{
+  margin-bottom: 0;
+}
+
+
+.container{
+  position: fixed;
+  left:700px;
+  top:300px;
+}
+.navbar-home{
+  margin-top:0px;
+  background-color:white;
+  position: fixed;
+  font-size: large;
+  padding:50px;
+  margin: 10px;
+  margin-bottom: inherit;
+  margin-left:200px;
+}
+.home{
+  background-color:#FFDFFF;
+  padding:100px;
+  margin-left: 300px;
+  margin-bottom: 0px;
+  margin-right: 100px;
+  position:fixed;
+}
+.displaypage{
+  background-color:white;
+  margin-left: 300px;
+  font-size: 20px;
+  margin-right: 30px;
+  margin-top:0px;
+  margin-bottom:0px;
+  background: fixed;
+  cursor: pointer;
+  margin-left: 0px;
+}
+.que.list{
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+/*.que.list.questionspage{
+  background-color: #BBD8DC !important;
+  color: white;
+}
+.questions li.selected:hover{
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}*/
+.badge{
+  bakground-color:white;
+  font-size: larger;
+}
+/*.sort{
+ margin-left:500px;
+  width:50%;
+}*/
+.btn btn-info btn-lg{
+  position: fixed;
+  margin-left: 200px;
+}
+

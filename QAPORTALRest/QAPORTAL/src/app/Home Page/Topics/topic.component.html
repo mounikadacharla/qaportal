@@ -1,0 +1,32 @@
+<div class="sort">
+  <form id="demo-2">
+    <input type="search" placeholder="Search" class="form-control" #msgref (keyup)="SearchText(msgref.value)">
+
+  </form>
+</div>
+
+<table *ngIf="questionsFlag" style="margin-top: 19px;border: 1px solid #eee">
+  <ul *ngFor="let question of questions" style="padding:10px">
+    <li (click)="onQuestionClick(question)" class="list-group-item"> {{question.question}}
+      <span class="badge">{{question.postedTime | date:"shortDate"}}</span></li>
+    <!--PostedTime:{{question.postedTime}}-->
+  </ul>
+</table>
+<div *ngIf="answersFlag">
+  <h3><b>{{question}}</b></h3>
+  <table>
+    <ul *ngFor="let answer of answers">
+      <li><p>{{answer.answer}}</p></li>
+      <span style="color:grey">PostedTime:{{answer.postedTime}}</span>
+    </ul>
+    <button (click)="onClick()" class="btn btn-info btn-lg">Back</button>
+    <button (click)="onAnswerClick()" class="btn btn-primary btn-lg" style="margin-left:2px">Answer</button>
+  </table>
+
+</div>
+
+<div class="answers" *ngIf="postAnswerFlag">
+  <input  type="text"#answer >
+  <button id="subAns" (click)="onSubmitClick(answer.value)">Submit</button>
+  <button (click)="onCloseClick()" id="close">Close</button>
+</div>

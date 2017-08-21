@@ -1,9 +1,13 @@
 package com.alacriti.qaportal.dao.impl;
 
+import org.apache.log4j.Logger;
+
+import com.alacriti.qaportal.bo.imp.AskQuestionBO;
 import com.alacriti.qaportal.constants.ErrorConstants;
 import com.alacriti.qaportal.exception.BaseException;
 
 public class DAOException extends BaseException {
+	public static final Logger log= Logger.getLogger(DAOException.class);
 
 	public DAOException() {
 	}

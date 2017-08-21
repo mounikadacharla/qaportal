@@ -6,14 +6,13 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 import com.alacriti.qaportal.constants.Constants;
+
 /*import com.alacriti.hrm.log.impl.AppLogger;*/
 
-
 public class NumberUtils {
-	
 
 	public static double getDouble(String numStr) {
-	
+
 		try {
 			return Double.valueOf(StringUtil.noNullTrim(numStr));
 		} catch (NumberFormatException e) {
@@ -33,7 +32,7 @@ public class NumberUtils {
 	}
 
 	public static long getLong(String numStr) {
-	
+
 		try {
 			return Long.valueOf(StringUtil.noNullTrim(numStr));
 		} catch (NumberFormatException e) {
@@ -53,7 +52,6 @@ public class NumberUtils {
 	}
 
 	public static long getLong(Object object) {
-	
 
 		if (object == null) {
 			return Constants.DEFAULT_LONG;
@@ -72,7 +70,6 @@ public class NumberUtils {
 
 	public static int getInt(Object object) {
 
-
 		if (object == null) {
 			return Constants.DEFAULT_INT;
 		}
@@ -88,7 +85,8 @@ public class NumberUtils {
 		return Constants.DEFAULT_INT;
 	}
 
-	public static BigDecimal getAmountBigDecimal(int precision, boolean signBit, long l) {
+	public static BigDecimal getAmountBigDecimal(int precision,
+			boolean signBit, long l) {
 
 		BigDecimal bigDecimal = new BigDecimal(l);
 		bigDecimal = bigDecimal.movePointLeft(precision);
@@ -97,11 +95,13 @@ public class NumberUtils {
 		return bigDecimal;
 	}
 
-	public static BigDecimal getPercentageBigDecimal(boolean indicator, long integerVal, long decimalVal) {
-		
+	public static BigDecimal getPercentageBigDecimal(boolean indicator,
+			long integerVal, long decimalVal) {
+
 		BigDecimal integerValDecimal = new BigDecimal(integerVal);
 		BigDecimal decimalValDecimal = new BigDecimal(decimalVal);
-		decimalValDecimal = decimalValDecimal.movePointLeft(decimalValDecimal.precision());
+		decimalValDecimal = decimalValDecimal.movePointLeft(decimalValDecimal
+				.precision());
 		BigDecimal returnVal = integerValDecimal.add(decimalValDecimal);
 		if (!indicator) {
 			returnVal = returnVal.negate();
@@ -110,19 +110,21 @@ public class NumberUtils {
 		return returnVal;
 	}
 
-	public static BigDecimal getPercentageBigDecimal(boolean indicator, String integerVal, String decimalVal) {
-	
-		BigDecimal bigDecimal = new BigDecimal((indicator ? "+" : "-") + integerVal + "." + decimalVal);
+	public static BigDecimal getPercentageBigDecimal(boolean indicator,
+			String integerVal, String decimalVal) {
+
+		BigDecimal bigDecimal = new BigDecimal((indicator ? "+" : "-")
+				+ integerVal + "." + decimalVal);
 		return bigDecimal;
 	}
 
 	public static boolean isNumeric(String s) {
-	
+
 		return Pattern.matches("[0-9]+", s);
 	}
 
 	public static boolean isDecimal(String str) {
-	
+
 		try {
 			double d = Double.parseDouble(str);
 		} catch (NumberFormatException e) {
@@ -133,7 +135,7 @@ public class NumberUtils {
 	}
 
 	public static BigDecimal getBigdecimal(String stringNumber) {
-	
+
 		try {
 			stringNumber = stringNumber.trim();
 			BigDecimal money = new BigDecimal(stringNumber.replaceAll(",", ""));
@@ -160,14 +162,13 @@ public class NumberUtils {
 	}
 
 	public static BigDecimal getBigDecimalUptoTwoDecimalPlaces(BigDecimal num) {
-		
 
 		return num.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 
 	}
 
 	public static int randInt(int min, int max) {
-	
+
 		Random rand = new Random();
 
 		int randomNum = rand.nextInt((max - min) + 1) + min;
@@ -176,13 +177,12 @@ public class NumberUtils {
 
 	public static String amountFormatUSD(String d) {
 
-
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
 		return formatter.format(d) + "";
 	}
 
 	public static String amountFormatUSDForMail(BigDecimal amt) {
-		
+
 		return NumberFormat.getCurrencyInstance().format(amt);
 	}
 

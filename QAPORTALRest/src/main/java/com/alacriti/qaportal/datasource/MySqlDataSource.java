@@ -11,9 +11,13 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
+
+import com.alacriti.qaportal.bo.imp.AskQuestionBO;
 import com.alacriti.qaportal.util.ExceptionUtil;
 
 public final class MySqlDataSource {
+	public static final Logger log= Logger.getLogger(MySqlDataSource.class);
 	private static MySqlDataSource ms_this = null;
 	private static DataSource dbSource = null;
 
@@ -46,10 +50,10 @@ public final class MySqlDataSource {
 
 			}
 		} catch (NamingException e) {
-			System.out.println("NamingException in initialize "
+		log.error("NamingException in initialize "
 					+ e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Exception in initialize " + e.getMessage());
+			log.error("Exception in initialize " + e.getMessage());
 		}
 	}
 
@@ -60,7 +64,7 @@ public final class MySqlDataSource {
 
 			return dbCon;
 		} catch (Exception e) {
-			System.out.println("Exception in getConnection ");
+			log.error("Exception in getConnection "+e.getMessage());
 		}
 		return null;
 	}
@@ -106,7 +110,7 @@ public final class MySqlDataSource {
 				return method.invoke(conn, args);
 			} catch (InvocationTargetException e) {
 
-				System.out.println("InvocationTargetException in invoke "
+				log.error("InvocationTargetException in invoke "
 						+ e.getMessage());
 
 				throw e.getTargetException();

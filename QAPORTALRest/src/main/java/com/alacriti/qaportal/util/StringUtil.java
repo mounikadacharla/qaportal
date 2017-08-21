@@ -11,48 +11,47 @@ import java.util.Random;
 
 import com.alacriti.qaportal.constants.Constants;
 
-
-
 public class StringUtil {
 
-	
-
-	private static DateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
+	private static DateFormat format = new SimpleDateFormat(
+			"yyyy-MM-dd-HH-mm-ss-SSS");
 
 	private static Random random = new Random();
 
+	public static String concatWithTokens(String token, boolean noTrim,
+			String... stringsToConcat) {
 
-	public static String concatWithTokens(String token, boolean noTrim, String... stringsToConcat) {
-		
 		String finalString = "";
 
 		for (String string : stringsToConcat) {
-			finalString += (isEmpty(finalString) ? "" : token) + (noTrim ? string : noNullTrim(string));
+			finalString += (isEmpty(finalString) ? "" : token)
+					+ (noTrim ? string : noNullTrim(string));
 		}
 
 		return finalString;
 	}
 
 	public static String getStringFromBytes(byte[] byteData) {
-		
+
 		if (byteData == null)
 			return null;
 		else
 			return new String(byteData);
 	}
 
-	public static String concatWithTokens(String token, String... stringsToConcat) {
-	
+	public static String concatWithTokens(String token,
+			String... stringsToConcat) {
+
 		return concatWithTokens(token, true, stringsToConcat);
 	}
 
 	public static String getInUpperCase(String str) {
-		
+
 		return noNullTrim(str).toUpperCase();
 	}
 
 	public static boolean isEmpty(String str) {
-		
+
 		return (str == null) || (str.trim().length() == 0);
 	}
 
@@ -66,17 +65,17 @@ public class StringUtil {
 	}
 
 	public static String noNull(String str) {
-		
+
 		return str == null ? Constants.EMPTY_STRING : str;
 	}
 
 	public static String toString(Object obj) {
-		
+
 		return obj == null ? Constants.EMPTY_STRING : obj.toString();
 	}
 
 	public static String getStringRepeated(String str, int repeatCount) {
-		
+
 		String strRep = Constants.EMPTY_STRING;
 
 		if (isEmpty(str)) {
@@ -92,8 +91,8 @@ public class StringUtil {
 		return strRep;
 	}
 
-	private static String replaceAll(String input, String stringToReplace, String replacement) {
-	
+	private static String replaceAll(String input, String stringToReplace,
+			String replacement) {
 
 		if (input != null && input.indexOf(stringToReplace) > -1)
 			return input.replaceAll(stringToReplace, replacement);
@@ -101,7 +100,7 @@ public class StringUtil {
 	}
 
 	public static String xmlEncode(String inputString) {
-	
+
 		String localInputString = inputString;
 		localInputString = replaceAll(localInputString, "&", "&amp;");
 		localInputString = replaceAll(localInputString, "<", "&lt;");
@@ -112,7 +111,7 @@ public class StringUtil {
 	}
 
 	public static String xmlEncodeForSidebuyDeals(String inputString) {
-		
+
 		String localInputString = inputString;
 		localInputString = replaceAll(localInputString, "&lt;span&gt;", "");
 		localInputString = replaceAll(localInputString, "&lt;/span&gt;", "");
@@ -120,27 +119,28 @@ public class StringUtil {
 	}
 
 	public static boolean areEqual(String strA, String strB) {
-		
+
 		return areEqual(strA, strB, false);
 	}
 
-	public static boolean areEqual(String strA, String strB, boolean isCaseSensitive) {
-		
+	public static boolean areEqual(String strA, String strB,
+			boolean isCaseSensitive) {
+
 		String str1 = "";
 		String str2 = "";
 		str1 = noNullTrim(strA);
 		str2 = noNullTrim(strB);
-		return isCaseSensitive ? str1.equals(str2) : str1.equalsIgnoreCase(str2);
+		return isCaseSensitive ? str1.equals(str2) : str1
+				.equalsIgnoreCase(str2);
 	}
 
 	public static boolean areEqual(boolean isRequired, String strA, String strB) {
 
-	
-		return isRequired ? noNullTrim(strA).equalsIgnoreCase(noNullTrim(strB)) : false;
+		return isRequired ? noNullTrim(strA).equalsIgnoreCase(noNullTrim(strB))
+				: false;
 	}
 
 	public static String[] split(String element) {
-		
 
 		if (element != null && !element.isEmpty() && element.contains("/")) {
 			return element.split("/");
@@ -150,7 +150,6 @@ public class StringUtil {
 	}
 
 	public static String[] split(String src, String token) {
-		
 
 		if (src != null && !src.isEmpty()) {
 			return src.split(token);
@@ -160,13 +159,13 @@ public class StringUtil {
 	}
 
 	public static String trimOrSetDefault(String str, String defailtVal) {
-		
+
 		return isEmpty(str) ? defailtVal : str.trim();
 	}
 
 	// method to return string for the given limit
 	public static String truncateString(String str, int val) {
-	
+
 		if (str != null && str.length() > val) {
 			return str.substring(0, val);
 		}
@@ -175,7 +174,7 @@ public class StringUtil {
 
 	// this method sanitizes and makes the filename unique with timestamp
 	public static String createFileName(String rawFileName) {
-		
+
 		if (isEmpty(rawFileName)) {
 			return null;
 		}
@@ -188,13 +187,14 @@ public class StringUtil {
 			e.printStackTrace();
 			return null;
 		}
-		String randomName = format.format(new Date()) + "_" + random.nextInt(1000);
+		String randomName = format.format(new Date()) + "_"
+				+ random.nextInt(1000);
 
 		return (randomName + cleanedName);
 	}
 
 	public static String appendStrings(Object[] messages) {
-	
+
 		String str = "";
 		for (Object msg : messages) {
 			str += toString(msg);
@@ -203,14 +203,15 @@ public class StringUtil {
 	}
 
 	public static String joinStrings(String str1, String str2) {
-		
+
 		String str = "";
 		str = str1 + str2;
 		return str;
 	}
 
-	public static String convertStringListToStringWithCommaSeparation(List<String> stringList, char separator) {
-		
+	public static String convertStringListToStringWithCommaSeparation(
+			List<String> stringList, char separator) {
+
 		StringBuilder rString = new StringBuilder();
 		for (String each : stringList) {
 			if (each.equals(stringList.get(0)))
@@ -222,12 +223,12 @@ public class StringUtil {
 	}
 
 	public static String removeSpaces(String item) {
-	
+
 		return item.replace(" ", "");
 	}
 
 	public static String trimTrailingZerosToTwoDecimalPlaces(String item) {
-		
+
 		double value = Double.parseDouble(item);
 		DecimalFormat df = new DecimalFormat("0.00");
 
@@ -235,7 +236,7 @@ public class StringUtil {
 	}
 
 	public static String retrieveTextBetweenAngularBraces(String text) {
-	
+
 		int startingIndex = text.indexOf("<");
 		if (startingIndex != -1) {
 			int endingIndex = text.indexOf(">", startingIndex);
