@@ -21,8 +21,6 @@ public class SessionResource {
 	public boolean SessionResource(@Context HttpServletRequest request) {
 		log.debug("SessionResource====>SessionResource");
 		SessionUtility sessionUtility = new SessionUtility();
-		// HttpSession session = request.getSession(false);
-		// System.out.println("session in checkSession :" + session);
 		return sessionUtility.checkForSession(request);
 	}
 
@@ -37,15 +35,11 @@ public class SessionResource {
 		try {
 			sessionUtility = new SessionUtility();
 			HttpSession session = request.getSession();
-			System.out.println("session in checkSession :" + session);
 			session.invalidate();
-			System.out.println("Checking for session "+session);
 			result = sessionUtility.checkForSession(request);
 		} catch (Exception e) {
 			log.error(e.getMessage());
-			System.out.println("Exception occured in destroying session");
 		}
-		System.out.println("result");
 		return result;
 		
 	}

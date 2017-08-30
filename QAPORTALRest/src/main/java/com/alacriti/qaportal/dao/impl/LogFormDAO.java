@@ -30,18 +30,15 @@ public class LogFormDAO extends BaseDAO {
 			String password = userLoginVO.getPassword();
 			String sqlCmd = "select password,sid from mounikad_qaportal_logindetails where emailId='"
 					+ userName + "'or userName='" + userName + "'";
-			System.out.println("inDao");
 			stmt = getStatementCheckUserLogin(getConnection(), sqlCmd);
 			rs = stmt.executeQuery(sqlCmd);
 			if (rs.next()) {
 				if (password.equals(rs.getString("password"))) {
-					System.out.println("Successfully Logged in***" + userName);
 					validation=new LoginValidation(rs.getInt("sid"),userName,true);
 					
 					
 					
 				} else {
-					System.out.println("Invalid Password");
 					validation=new LoginValidation(rs.getInt("sid"),userName,false);
 					}
 
@@ -57,15 +54,11 @@ public class LogFormDAO extends BaseDAO {
 
 	public Statement getStatementCheckUserLogin(Connection connection,
 			String sqlCmd) throws SQLException {
-			
-
-		System.out.println("getStatement: " + sqlCmd);
 		try {
 
 			return connection.createStatement();
 		} catch (SQLException e) {
-			System.out.println("Exception in getStatementCheckUser "
-					+ e.getMessage());
+			log.error(e.getMessage());
 			throw e;
 		}
 	}

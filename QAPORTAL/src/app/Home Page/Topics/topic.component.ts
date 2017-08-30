@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {TopicService} from './topic.service';
 import {ActivatedRoute} from '@angular/router';
-import {HomeComponent} from '../home.component';
-/*import {CateogiriesService} from '../../cateogiries.service';*/
-import {HomeService} from '../home.service';
+import { CategoryService} from '../category.service'
 import {SearchService} from './Search.service';
-import {LoginService} from '../../Login Page/login.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-topic',
@@ -14,24 +12,15 @@ import {LoginService} from '../../Login Page/login.service';
 })
 export class TopicComponent implements OnInit {
   questions = [];
-  answers=[];
-  public value;
-  questionsFlag=true;
-  answersFlag=false;
-  postedData:string;
-  postError:string;
-
-
+  answers = []
+  questionsFlag = true;
   question;
   questionId;
-  p=1;
+  p = 1;
 
-  postAnswerFlag:boolean=false;
+  postAnswerFlag: boolean = false;
 
-
-  private id;
-
-  constructor(private route: ActivatedRoute, private _topicService: TopicService, private _categoryService: HomeService,private _searchService:SearchService,private _loginService:LoginService) {
+  constructor(private route: ActivatedRoute, private _topicService: TopicService, private _categoryService: CategoryService, private _searchService: SearchService,private router:Router) {
   }
 
   categories = null;
@@ -57,6 +46,7 @@ export class TopicComponent implements OnInit {
       }
     );
   }
+
   getQuestions = function (name) {
     console.log('######## categories : ', this.categories)
     for (let category of this.categories) {
@@ -68,48 +58,13 @@ export class TopicComponent implements OnInit {
       .subscribe(resQuestionsData => this.questions = resQuestionsData);
   }
   onQuestionClick(value){
-    this.questionsFlag=false;
-    this.answersFlag=true;
-    this.question=value.question;
-    this.questionId=value.questionId;
-    this._topicService.onQuestionClick(value.questionId)
-      .subscribe(resAnswersData=>this.answers=resAnswersData);
-
+    this.router.navigate(['home/topic/answers',value.questionId]);
   }
-  onClick(){
-      this.questionsFlag=true;
-      this.answersFlag=false;
-  }
-
-
   SearchText(value){
     console.log(value);
     this._searchService.searchText(value)
       .subscribe(resAnswersData=>this.questions=resAnswersData);
   }
-  onAnswerClick()
-  {
-    this.postAnswerFlag=true;
-  }
-  onCloseClick()
-  {
-    this.postAnswerFlag=false;
-  }
- onSubmitClick(value){
-    console.log(value,this.questionId);
-  /*  var sid=this._loginService.getLoginData().sid;*/
-  var sid=window.localStorage.getItem("sid");
-  console.log("onSubmit",sid);
-    this._topicService.onSubmitClick(this.questionId,sid ,value)
-      .subscribe(resRegistrationData=>{this.postedData=resRegistrationData;
-        console.log(this.postedData)
-      },
-        resRegistrationError=>{this.postError=resRegistrationError;
-        console.log("Err",resRegistrationError);
-      });
-   this.postAnswerFlag=false;
-   console.log("flag:",this.postAnswerFlag);
-  }
+
 
 }
-

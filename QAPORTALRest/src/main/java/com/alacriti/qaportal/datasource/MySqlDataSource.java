@@ -125,15 +125,14 @@ public final class MySqlDataSource {
 	public static void printConnectionLeakTrace() {
 
 		if (openConnIdMap.size() > 0) {
-			System.out
-					.println("No Problem in this exception. There are some open connection exist now : ");
+			log.debug("No Problem in this exception. There are some open connection exist now : ");
 			for (Map.Entry<String, String> entry : openConnIdMap.entrySet()) {
-				System.out.println("No Problem in this exception. ConnId:"
+				log.debug("No Problem in this exception. ConnId:"
 						+ entry.getKey() + " :: Trace :" + entry.getValue());
 
 			}
 		}
-		System.out.println("printConnectionLeakTrace(): End");
+		log.debug("printConnectionLeakTrace(): End");
 
 	}
 }

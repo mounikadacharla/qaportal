@@ -6,17 +6,18 @@ import { NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser';
 import { QuestionsModule} from './TotalQuestionsPage/questions.module'
-import {HomeService} from './home.service';
+import {CategoryService} from './category.service';
 import {TopicModule} from './Topics/topic.module';
 import {RouterModule} from '@angular/router';
+import {AnswersModule} from './Answers Page/answers.module';
 
 
 @NgModule({
   declarations: [HomeComponent],
   imports: [
-    HttpModule, FormsModule,TopicModule,CommonModule, RouterModule,BrowserModule,QuestionsModule
+    HttpModule, FormsModule,TopicModule,CommonModule, RouterModule,BrowserModule,QuestionsModule,AnswersModule
   ],
-  providers: [HomeService],
+  providers: [CategoryService],
   bootstrap: [HomeComponent]
 })
 export class HomeModule { }

@@ -24,11 +24,9 @@ public class HomeDAO extends BaseDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			System.out.println("in dao1");
 			stmt = getPreparedStatement(
 					getConnection(),
 					"select q.sid_question,l.userName,q.question,q.postedtime from mounikad_qaportal_tableforquestions as q inner join mounikad_qaportal_logindetails as l on q.sid_person=l.sid ORDER BY q.postedtime desc");
-			System.out.println("in dao");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				questions.add(new QuestionsModel(rs.getInt(1),rs.getString("userName"),rs.getString("question"), rs.getDate("postedTime")));

@@ -24,7 +24,6 @@ public class UserRoleBO extends BaseBO {
 		log.debug("UserRoleBO====>createUserRole");
 		try {
 			UserDAO userDAO = new UserDAO(getConnection());
-			System.out.println("data working");
 			userDAO.createUserRole(userRoleVO);
 
 		} catch (DAOException e) {

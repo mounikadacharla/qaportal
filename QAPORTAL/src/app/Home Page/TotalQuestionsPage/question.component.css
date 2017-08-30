@@ -5,7 +5,6 @@
   width: 500px;
   height: 200px;
   background-color: white;
-/*  border-radius: 50px;*/
   border: none;
 
   -webkit-box-shadow: 24px 6px 184px 16px rgba(0,0,0,0.75);
@@ -31,8 +30,22 @@ button#subAns{
   left:63%;
   top:15%;
 }
-span{
- color: grey;
+.answers input{
+  position: relative;
+  height: 150px;
+  top:40%;
+  left: 30%;
+
+}
+button#close{
+  position: relative;
+  left:65%;
+  top:15%;
+}
+button#subAns{
+  position: relative;
+  left:63%;
+  top:15%;
 }
 
 

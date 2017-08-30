@@ -16,7 +16,6 @@ public class AnsweringToAQuestionDAO extends BaseDAO {
 	}
 
 	public AnsweringToAQuestionDAO() {
-
 	}
 
 	public void answeringToAQuestion(
@@ -26,7 +25,7 @@ public class AnsweringToAQuestionDAO extends BaseDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			System.out.println("Before prepared statement");
+			
 			stmt = getPreparedStatement(
 					getConnection(),
 					"insert into mounikad_qaportal_answersinformation(sid_question,sid_person,answer) values(?,?,?)");

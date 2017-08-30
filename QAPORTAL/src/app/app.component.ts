@@ -1,20 +1,19 @@
 
 import { Component,OnInit } from '@angular/core';
-import {Router,} from '@angular/router';
-import {ActivatedRoute} from '@angular/router'
 import {LoginService} from './Login Page/login.service';
 import {Http} from '@angular/http';
-import {HomeService} from './Home Page/home.service';
+import { CategoryService} from './Home Page/category.service';
 @Component({
   selector: 'app-root',
   templateUrl:'./app.component.html',
 })
 export class AppComponent implements OnInit{
-  constructor(private _loginService :LoginService,private _homeService:HomeService){}
+  constructor(private _loginService :LoginService,private _categoryService:CategoryService){}
   isloginers=false;
   isloggedin=false;
   errorMsg;
   postError;
+  username;
   _http:Http;
   ngOnInit(){
 
@@ -25,6 +24,7 @@ export class AppComponent implements OnInit{
           if ( data === true) {
             console.log("data is valid");
             this.isloggedin=data;
+            this.username=localStorage.getItem("username");
 
 
 
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit{
   }
 
 logout(){
-    this._homeService.categoriesNull();
+    this._categoryService.categoriesNull();
 
   this._loginService.logout()
     .subscribe(reslogoutData => this.isloggedin=reslogoutData);

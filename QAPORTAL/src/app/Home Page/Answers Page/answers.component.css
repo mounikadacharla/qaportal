@@ -1,0 +1,35 @@
+.answers,.editAnswers{
+  position: fixed;
+  top:20%;
+  left: 40%;
+  width: 500px;
+  height: 200px;
+  background-color: white;
+  border: none;
+
+  -webkit-box-shadow: 24px 6px 184px 16px rgba(0,0,0,0.75);
+  -moz-box-shadow: 24px 6px 184px 16px rgba(0,0,0,0.75);
+  box-shadow: 24px 6px 184px 16px rgba(0,0,0,0.75);
+
+}
+
+.answers input{
+  position: relative;
+  top:40%;
+  left: 30%;
+
+}
+button#close{
+  position: relative;
+  left:65%;
+  top:15%;
+}
+button#subAns{
+  position: relative;
+  left:63%;
+  top:15%;
+}
+.editbutton{
+  background-color : cornflowerblue;
+  color: white;
+}

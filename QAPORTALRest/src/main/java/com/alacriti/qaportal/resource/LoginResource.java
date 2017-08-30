@@ -27,9 +27,7 @@ public class LoginResource {
 		log.debug("LoginResource====>loginRole");
 		LoginDelegate loginDelegate = new LoginDelegate();
 		HttpSession session = request.getSession();
-		System.out.println("%%%%%%%%%%%% session" + session);
-		return loginDelegate.loginRoleBO(loginDetails); // Response.status(200).entity(loginDetails).build();
-
+		return loginDelegate.loginRoleBO(loginDetails);
 	}
 
 }

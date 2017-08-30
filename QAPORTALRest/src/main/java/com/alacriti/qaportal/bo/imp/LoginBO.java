@@ -25,7 +25,6 @@ public class LoginBO extends BaseBO {
 		LoginValidation validation=null;
 		try {
 			LogFormDAO logFormDAO = new LogFormDAO(getConnection());
-			System.out.println("data working");
 			validation= logFormDAO.logInRole(loginDetails);
 
 		} catch (DAOException e) {

@@ -11,7 +11,8 @@ import com.alacriti.qaportal.dao.impl.QuestionsDAO;
 import com.alacriti.qaportal.model.vo.QuestionsModel;
 
 public class QuestionsBO extends BaseBO {
-	public static final Logger log= Logger.getLogger(QuestionsBO.class);
+	public static final Logger log = Logger.getLogger(QuestionsBO.class);
+
 	public QuestionsBO(Connection connection) {
 		super(connection);
 	}
@@ -38,4 +39,21 @@ public class QuestionsBO extends BaseBO {
 
 	}
 
+	public String questionForAnswers(int questionId) throws DAOException,
+			BOException {
+		log.debug("QuestionsBO====>questionForAnswers");
+		String question = null;
+		try {
+			QuestionsDAO questionsDAO = new QuestionsDAO(getConnection());
+			question = questionsDAO.questionForAnswers(questionId);
+			return question;
+
+		} catch (DAOException e) {
+			log.error(e.getMessage());
+			throw new DAOException();
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			throw new BOException();
+		}
+	}
 }

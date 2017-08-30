@@ -1,9 +1,7 @@
-import {CommonModule} from '@angular/common';
+
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {RouterLink} from '@angular/router';
-import {HomeService} from './home.service';
-import {ActivatedRoute} from '@angular/router';
+import { CategoryService} from './category.service';
 import {LoginService} from '../Login Page/login.service';
 
 @Component({
@@ -16,7 +14,7 @@ export class HomeComponent {
   postError :string;
   isloggedin=false;
 
-  constructor(private _categoryService: HomeService,
+  constructor(private _categoryService: CategoryService,
               private router: Router,
               private _loginService:LoginService) {
   }
@@ -47,11 +45,13 @@ export class HomeComponent {
   }
 
 
-  onSubmit(category,question){
+  onSubmitQuestion(category,question){
     var sid=localStorage.getItem("sid");
-    this._categoryService.postData(category,sid,question)
+    this._categoryService.onSubmitQuestion(category,sid,question)
       .subscribe(resRegistrationData=>this.postedData=JSON.stringify(resRegistrationData),
         resRegistrationError=>this.postError=resRegistrationError);
+    window.location.reload();
+
   }
 }
 

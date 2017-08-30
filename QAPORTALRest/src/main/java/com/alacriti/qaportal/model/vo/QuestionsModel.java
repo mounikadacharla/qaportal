@@ -7,6 +7,10 @@ public class QuestionsModel {
 	public String userName;
 	public String question;
 	public Date postedTime;
+	public String category;
+	public QuestionsModel(){
+		
+	}
 	public QuestionsModel(int questionId, String userName, String question,
 			Date postedTime) {
 		super();
@@ -15,6 +19,16 @@ public class QuestionsModel {
 		this.question = question;
 		this.postedTime = postedTime;
 	}
+	
+	public QuestionsModel(String userName, String question, Date postedTime,
+			String category) {
+		super();
+		this.userName = userName;
+		this.question = question;
+		this.postedTime = postedTime;
+		this.category = category;
+	}
+
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -39,5 +53,14 @@ public class QuestionsModel {
 	public void setPostedTime(Date postedTime) {
 		this.postedTime = postedTime;
 	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 }
 	

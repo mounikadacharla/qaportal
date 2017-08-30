@@ -40,9 +40,19 @@ public class CategoryResource {
 		QuestionDelegate questionDelegate = new QuestionDelegate();
 		return questionDelegate.questionsFromDelegate(questionId);
 	}
+	
+	@POST
+	@Path("/questionId")
+//	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String questionForAnswers(int questionId) {
+		log.debug("CategoryResource====>questionForAnswers");
+		QuestionDelegate questionDelegate = new QuestionDelegate();
+		return questionDelegate.questionForAnswers(questionId);
+	}
 
 	@POST
-	@Path("/questionid")
+	@Path("/answers")
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<AnswersModel> answersForQuestions(int questionId) {

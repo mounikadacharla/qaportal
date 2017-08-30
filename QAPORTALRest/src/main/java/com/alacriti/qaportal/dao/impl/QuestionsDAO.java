@@ -44,5 +44,30 @@ public class QuestionsDAO extends BaseDAO {
 		}
 		return questionsInDAO;
 	}
+	public String questionForAnswers(int questionId) throws DAOException{
+		log.debug("QuestionsDAO====>questionForAnswers");
+		String question=null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try{
+			stmt = getPreparedStatement(
+					getConnection(),"select question from mounikad_qaportal_tableforquestions"
+									+" where sid_question=?");
+			stmt.setInt(1, questionId);
+			rs = stmt.executeQuery();
+			while(rs.next()){
+				question=rs.getString("question");
+			}
+				
+			}catch (SQLException e) {
+				log.error(e.getMessage());
+				throw new DAOException();
+		}
+		finally {
+			close(stmt, rs);
+		}
+		return question;
+		
+	}
 
 }

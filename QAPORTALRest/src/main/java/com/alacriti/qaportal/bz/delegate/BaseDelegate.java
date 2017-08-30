@@ -93,8 +93,7 @@ public class BaseDelegate {
 
 			conn.setAutoCommit(false);
 		} catch (SQLException e) {
-			System.out.println("SQLException in startDBTransaction "
-					+ e.getMessage());
+			log.error(e.getMessage());
 		}
 		return conn;
 

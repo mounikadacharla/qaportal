@@ -28,8 +28,7 @@ public class UserDAO extends BaseDAO {
 		try {
 			String sqlCmd = "sqlcmd";
 
-			stmt = getPreparedStatementCreateUserRole(getConnection(), sqlCmd);
-			System.out.println("mouni error");
+			stmt = getPreparedStatement(getConnection(), sqlCmd);
 			stmt.setString(1, userRoleVO.firstName);
 			stmt.setString(2, userRoleVO.lastName);
 			stmt.setString(3, userRoleVO.emailId);
@@ -45,7 +44,7 @@ public class UserDAO extends BaseDAO {
 			close(stmt, rs);
 		}
 	}
-
+/*
 	public PreparedStatement getPreparedStatementCreateUserRole(
 			Connection connection, String sqlCmd) throws SQLException {
 		try {
@@ -55,6 +54,6 @@ public class UserDAO extends BaseDAO {
 			log.error(e.getMessage());
 			throw e;
 		}
-	}
+	}*/
 
 }

@@ -30,12 +30,14 @@ public class AnswersDAO extends BaseDAO {
 		try {
 			stmt = getPreparedStatement(
 					getConnection(),
-					"select a.sid_answer,l.userName,a.answer,a.postedtime from mounikad_qaportal_answersinformation as a inner join mounikad_qaportal_logindetails as l on a.sid_person=l.sid where a.sid_question=? order by a.postedtime;");
+					"select a.sid_answer,l.userName,a.answer,a.postedtime,a.sid_person from"
+					+" mounikad_qaportal_answersinformation as a inner join mounikad_qaportal_logindetails as l"
+							+" on a.sid_person=l.sid where a.sid_question=? order by a.postedtime desc;");
 			stmt.setInt(1, questionId);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				answersInDAO.add(new AnswersModel(rs.getInt(1),rs.getString("userName"),rs.getString("answer"), rs
-						.getDate("postedTime")));
+						.getDate("postedTime"),rs.getInt(5)));
 			}
 		} catch (SQLException e) {
 			log.error(e.getMessage());

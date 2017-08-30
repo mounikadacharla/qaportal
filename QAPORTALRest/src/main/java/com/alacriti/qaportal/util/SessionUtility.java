@@ -7,8 +7,6 @@ public class SessionUtility {
 
 	public boolean checkForSession(HttpServletRequest request) {
 		HttpSession session= request.getSession(false);
-		System.out.println("printing the status of session");
-		System.out.println(session);
 		if (session == null)
 			return false;
 		else

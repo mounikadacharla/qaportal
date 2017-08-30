@@ -9,6 +9,7 @@ import {SearchService} from './Search.service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {LoginService} from '../../Login Page/login.service';
 
+
 @NgModule({
   declarations: [
     TopicComponent
@@ -23,3 +24,4 @@ import {LoginService} from '../../Login Page/login.service';
 })
 export class TopicModule {
 }
+

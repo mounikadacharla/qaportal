@@ -5,7 +5,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegistrationComponent} from './registration.component';
 import {RegistrationService} from "./registration.service";
 import {HttpModule} from '@angular/http';
-import {CommonModule} from '@angular/common'
 @NgModule({
   declarations: [RegistrationComponent],
   imports: [

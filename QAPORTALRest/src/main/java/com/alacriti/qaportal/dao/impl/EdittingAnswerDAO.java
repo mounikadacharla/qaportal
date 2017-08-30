@@ -26,10 +26,8 @@ public class EdittingAnswerDAO extends BaseDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			System.out.println("before prepared statement");
 			stmt = getPreparedStatement(getConnection(),
-					"update mounikad_qaportal_tableforanswers set answer=? where sid_answer=?");
-			System.out.println("after prepared statement");
+					"update mounikad_qaportal_answersinformation set answer=? where sid_answer=?");
 			stmt.setString(1, editAnswerModel.getAnswer());
 			stmt.setInt(2, editAnswerModel.getSid_answer());
 			stmt.executeUpdate();

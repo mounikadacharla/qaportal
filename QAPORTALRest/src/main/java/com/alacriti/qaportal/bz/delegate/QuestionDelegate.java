@@ -20,9 +20,7 @@ public class QuestionDelegate extends BaseDelegate {
 			/* List<String> questionsInHomeDelegate=new ArrayList<String>(); */
 			connection = startDBTransaction();
 			QuestionsBO questionsBO = new QuestionsBO(connection);
-			System.out.println("in delegate");
 			questionsInDelegate = questionsBO.questionsInBO(questionId);
-			System.out.println("Still in delegate");
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			rollback = true;
@@ -31,6 +29,25 @@ public class QuestionDelegate extends BaseDelegate {
 		}
 		return questionsInDelegate;
 
+	}
+	public String questionForAnswers(int questionId){
+		log.debug("QuestionDelegate====>questionForAnswers");
+		boolean rollback = false;
+		Connection connection = null;
+		String question=null;
+		try {
+			/* List<String> questionsInHomeDelegate=new ArrayList<String>(); */
+			connection = startDBTransaction();
+			QuestionsBO questionsBO = new QuestionsBO(connection);
+		
+			question = questionsBO.questionForAnswers(questionId);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			rollback = true;
+		} finally {
+			endDBTransaction(connection, rollback);
+		}
+		return question;
 	}
 
 }

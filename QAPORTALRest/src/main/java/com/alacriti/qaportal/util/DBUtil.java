@@ -20,9 +20,13 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.alacriti.qaportal.constants.Constants;
+import com.alacriti.qaportal.dao.impl.CategoryDAO;
 
 public class DBUtil {
+	public static final Logger log= Logger.getLogger(DBUtil.class);
 
 	private String fileName;
 	private String dbPropsFile;
@@ -65,7 +69,7 @@ public class DBUtil {
 			con = DriverManager.getConnection(dbURL, dbUserName, dbPasswd);
 			return con;
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 
 		return con;
@@ -76,10 +80,10 @@ public class DBUtil {
 		try {
 			con = getConnection();
 			if (con != null) {
-				System.out.println("Test connection success");
+				log.debug("Test connection success");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		} finally {
 			close(con, null, null);
 		}
@@ -99,7 +103,7 @@ public class DBUtil {
 				try {
 					input.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					log.error(e.getMessage());
 				}
 			}
 		}
@@ -117,7 +121,7 @@ public class DBUtil {
 			if (con != null)
 				con.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 	}
 
@@ -140,7 +144,7 @@ public class DBUtil {
 			}
 			return merchants;
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage());
 		} finally {
 			close(con, ps, rs);
 		}
@@ -152,22 +156,17 @@ public class DBUtil {
 		String dbPropsFile = args[0];
 
 		if (args[0] == null || args[0].trim().length() <= 0) {
-			System.out
-					.println("DB properties file not provided. Process exited");
+			log.debug("DB properties file not provided. Process exited");
 		}
 
 		DBUtil dbu = new DBUtil(dbPropsFile);
 		dbu.testConnection();
 
 		while (true) {
-			System.out.println("Enter 1 to create merchants");
-			System.out.println("Enter 2 to create customers");
-
 			Scanner inp = new Scanner(System.in);
 			String option = inp.nextLine();
 			if (option.equals("1")) {
-				System.out
-						.println("Enter file path and file name to create partners");
+				log.debug("Enter file path and file name to create partners");
 				Scanner scanner = new Scanner(System.in);
 				String fileName = scanner.nextLine();
 
@@ -178,16 +177,11 @@ public class DBUtil {
 				System.exit(0);
 			}
 			if (option.equals("2")) {
-				System.out.println("Enter customer login id");
 				Scanner scan = new Scanner(System.in);
-
-				System.out
-						.println("Enter number of customers to be created per partner");
 				if (scan != null)
 					scan.close();
 				System.exit(0);
 			} else {
-				System.out.println("Invalid option");
 				System.exit(0);
 			}
 			if (inp != null)

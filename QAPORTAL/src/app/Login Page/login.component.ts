@@ -8,10 +8,10 @@ import {Router} from "@angular/router"
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  postedData : string;
   postError : string;
   error: string;
   sid:any;
+  username;
   UserForm = new FormGroup({
     userName: new FormControl(),
     password: new FormControl()
@@ -23,11 +23,12 @@ export class LoginComponent {
 
   public onSubmit() {
     console.log("working");
-    // value=userForm.value;
     this._loginService.postData(this.UserForm.value.userName,this.UserForm.value.password)
       .subscribe(data => {
           if ( data.isValid === true) {
             this.sid=data.sid;
+            this.username=data.userName;
+            localStorage.setItem("username",this.username);
             window.localStorage.setItem("sid",this.sid)
             console.log("hello");
             console.log(localStorage.getItem("sid"));

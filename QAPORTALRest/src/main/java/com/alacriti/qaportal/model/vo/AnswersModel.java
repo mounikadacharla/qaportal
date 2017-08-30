@@ -3,26 +3,28 @@ package com.alacriti.qaportal.model.vo;
 import java.util.Date;
 
 public class AnswersModel {
-	public int questionId;
+	public int answerId;
 	public String userName;
 	public String answer;
 	public Date postedTime;
+	public int sid_person;
 			public AnswersModel(){
 				
 			}
-			public AnswersModel(int questionId, String userName, String answer,
-					Date postedTime) {
+			public AnswersModel(int answerId, String userName, String answer,
+					Date postedTime, int sid_person) {
 				super();
-				this.questionId = questionId;
+				this.answerId = answerId;
 				this.userName = userName;
 				this.answer = answer;
 				this.postedTime = postedTime;
+				this.sid_person = sid_person;
 			}
-			public int getQuestionId() {
-				return questionId;
+			public int getAnswerId() {
+				return answerId;
 			}
-			public void setQuestionId(int questionId) {
-				this.questionId = questionId;
+			public void setAnswerId(int answerId) {
+				this.answerId = answerId;
 			}
 			public String getUserName() {
 				return userName;
@@ -41,5 +43,11 @@ public class AnswersModel {
 			}
 			public void setPostedTime(Date postedTime) {
 				this.postedTime = postedTime;
+			}
+			public int getSid_person() {
+				return sid_person;
+			}
+			public void setSid_person(int sid_person) {
+				this.sid_person = sid_person;
 			}
 }

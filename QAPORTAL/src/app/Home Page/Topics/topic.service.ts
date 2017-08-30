@@ -8,11 +8,21 @@ import {Headers} from '@angular/http';
 
 @Injectable()
 export class TopicService {
+  private _url: string="http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/home";
   private _urlDifferentCategories: string = 'http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/id';
   private _urlForAnswers: string = "http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/questionid";
   private _urlForAnsweringQuestion:string="http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/answertoquestion";
 
   constructor(private _http: Http) {
+  }
+  getTotalQuestions(){
+    return this._http.get(this._url)
+      .map((response:Response)=>response.json())
+      .catch(this._errorHandler)
+  }
+  _errorHandler(error:Response){
+    console.error(error);
+    return Observable.throw(error||"server error");
   }
 
   getQuestions(id) {
@@ -48,3 +58,4 @@ export class TopicService {
   }
 
 }
+

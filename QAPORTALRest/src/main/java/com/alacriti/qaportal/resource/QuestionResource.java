@@ -9,12 +9,15 @@ import javax.ws.rs.core.MediaType;
 import org.apache.log4j.Logger;
 
 import com.alacriti.qaportal.bo.imp.AskQuestionBO;
+import com.alacriti.qaportal.bz.delegate.AnsweringToAQuestionDelegate;
 import com.alacriti.qaportal.bz.delegate.AskQuestionDelegate;
+import com.alacriti.qaportal.model.vo.AnsweringToAQuestionModel;
 import com.alacriti.qaportal.model.vo.ModelForAskQuestion;
 
 @Path("/")
-public class AskQuestionResource {
-	public static final Logger log= Logger.getLogger(AskQuestionResource.class);
+public class QuestionResource {
+	public static final Logger log = Logger.getLogger(QuestionResource.class);
+
 	@POST
 	@Path("/askquestion")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -27,4 +30,15 @@ public class AskQuestionResource {
 
 	}
 
+	@POST
+	@Path("answertoquestion")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public boolean answerToAQuestion(
+			AnsweringToAQuestionModel answeringToAQuestionModel) {
+		log.debug("AnswerToQuestionResource===>answertoquestionmodel");
+		AnsweringToAQuestionDelegate answeringToAQuestionDelegate = new AnsweringToAQuestionDelegate();
+		answeringToAQuestionDelegate
+				.answeringToAQuestion(answeringToAQuestionModel);
+		return true;
+	}
 }
