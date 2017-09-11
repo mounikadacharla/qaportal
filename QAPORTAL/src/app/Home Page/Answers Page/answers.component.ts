@@ -106,4 +106,13 @@ export class AnswersComponent implements OnInit {
 
 
   }
+  onClickDelete(value){
+    this._answersService.onClickDelete(value)
+      .subscribe(resData =>{
+        this.postedData = resData;
+        console.log(value);
+        this.getAnswers();
+      })
+
+  }
 }

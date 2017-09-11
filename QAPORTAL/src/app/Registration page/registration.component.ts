@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class RegistrationComponent{
   postedData : string;
   postError : string;
+  checkUser=false;
   userForm = new FormGroup({
     firstName: new FormControl(),
     lastName: new FormControl(),
@@ -33,5 +34,16 @@ export class RegistrationComponent{
         .subscribe(resRegistrationData=>this.postedData=JSON.stringify(resRegistrationData),
           resRegistrationError=>this.postError=resRegistrationError);
       this.router.navigate(['./login']);
+  }
+  SearchUser(value){
+      this.checkUser=false;
+      console.log(value);
+    this._registrationService.SearchUser(value)
+      .subscribe(data=>{
+        if(data === true){
+          this.checkUser=true;
+        }
+      },dataError => {this.postError = dataError;console.log(this.postError)});
+
   }
 }

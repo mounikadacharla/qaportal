@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.alacriti.qaportal.bo.imp.AskQuestionBO;
 import com.alacriti.qaportal.model.vo.UserRoleVO;
 
 public class UserDAO extends BaseDAO {
@@ -26,9 +25,7 @@ public class UserDAO extends BaseDAO {
 		ResultSet rs = null;
 
 		try {
-			String sqlCmd = "sqlcmd";
-
-			stmt = getPreparedStatement(getConnection(), sqlCmd);
+			stmt = getPreparedStatement(getConnection(), "insert into mounikad_qaportal_logindetails(firstName,lastName,emailId,userName,password) values(?,?,?,?,?)");
 			stmt.setString(1, userRoleVO.firstName);
 			stmt.setString(2, userRoleVO.lastName);
 			stmt.setString(3, userRoleVO.emailId);
@@ -43,6 +40,26 @@ public class UserDAO extends BaseDAO {
 		} finally {
 			close(stmt, rs);
 		}
+	}
+	public boolean user(String user) throws DAOException{
+		log.debug("UserDAO====>user");
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		boolean userNameExists=false;
+		try{
+			stmt = getPreparedStatement(getConnection(), "select sid from mounikad_qaportal_logindetials where userName ="+user);
+			rs = stmt.executeQuery();
+			if(rs.next()){
+				userNameExists=true;
+				
+			}
+		}catch(SQLException e){
+			log.error(e.getMessage());
+			throw new DAOException("SQLException in user():", e);
+		}finally{
+			close(stmt,rs);
+		}
+		return userNameExists;
 	}
 /*
 	public PreparedStatement getPreparedStatementCreateUserRole(

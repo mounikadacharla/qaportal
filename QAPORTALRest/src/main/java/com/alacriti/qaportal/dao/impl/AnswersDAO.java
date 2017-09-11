@@ -32,7 +32,7 @@ public class AnswersDAO extends BaseDAO {
 					getConnection(),
 					"select a.sid_answer,l.userName,a.answer,a.postedtime,a.sid_person from"
 					+" mounikad_qaportal_answersinformation as a inner join mounikad_qaportal_logindetails as l"
-							+" on a.sid_person=l.sid where a.sid_question=? order by a.postedtime desc;");
+							+" on a.sid_person=l.sid where a.sid_question=? and a.status=1 order by a.postedtime desc;");
 			stmt.setInt(1, questionId);
 			rs = stmt.executeQuery();
 			while (rs.next()) {

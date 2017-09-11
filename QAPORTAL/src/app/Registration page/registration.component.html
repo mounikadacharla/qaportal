@@ -12,11 +12,14 @@
         </div>
         <div class="form-group col-lg-12">
           <label>Email:</label>
-          <input type="email" class="form-control" formControlName="emailId" required>
+          <input type="email" class="form-control" formControlName="emailId"  required>
         </div>
         <div class="form-group col-lg-12">
           <label>UserName:</label>
-          <input type="text" class="form-control" formControlName="userName" required>
+          <input type="text" class="form-control" formControlName="userName" #msgreff (blur)="SearchUser(msgreff.value)" required>
+          <div class="alert-danger">
+          <p *ngIf="checkUser">UserName already Exists</p>
+          </div>
         </div>
         <div class="form-group col-lg-12">
           <label>Password:</label>
@@ -27,5 +30,18 @@
           <button type="reset" class="btn btn-primary" >Reset</button>
         </div>
       </form>
+</div>
+</div>
+<div class="container-fluid">
+<div class="row">
+
+  <div class="col-xs-5">col-sm-9</div>
+  <div class="col-xs-9 col-lg-7">col-sm-3</div>
+</div>
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-5">col-sm-9</div>
+    <div class="col-xs-9 col-lg-7">col-sm-3</div>
+  </div>
 </div>
 </div>

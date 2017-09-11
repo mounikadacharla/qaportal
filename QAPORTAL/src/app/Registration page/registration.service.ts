@@ -8,6 +8,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class RegistrationService{
   private _urlPost:string= "http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/adduser";
+  private _urlCheckUser:string= "http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/user";
   constructor(private _http:Http){}
   postData(firstName,lastName,emailId,userName,password)
   {
@@ -26,4 +27,13 @@ export class RegistrationService{
       .map((res:Response)=>res.json());
 
   }
+  SearchUser(value){
+    let postData=value;
+    var headers=new Headers();
+    headers.append('Content-Type',
+      'text/plain');
+    return this._http.post(this._urlCheckUser,postData)
+      .map((res:Response)=>res.json());
+
+    }
 }

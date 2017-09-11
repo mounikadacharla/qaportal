@@ -33,7 +33,9 @@ public class AnsweringToAQuestionDAO extends BaseDAO {
 			stmt.setInt(2, answeringToAQuestionModel.getSid_person());
 			stmt.setString(3, answeringToAQuestionModel.getAnswer());
 			log.debug("after prepared statement");
+			if(answeringToAQuestionModel.getAnswer()!=null){
 			stmt.executeUpdate();
+			}
 		} catch (SQLException e) {
 			log.error(e.getMessage());
 			throw new DAOException(

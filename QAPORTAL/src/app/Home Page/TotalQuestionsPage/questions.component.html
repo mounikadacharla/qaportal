@@ -5,10 +5,11 @@
 
     </form>
   </div>
+  <div class="carousel-inner">
   <div class="row">
     <div class="col-sm-12">
       <table style="margin-top: 19px;border: 1px solid #eee">
-        <ul style="padding:10px" *ngFor="let question of questions | paginate:{ itemsPerPage: 6, currentPage: p }" >
+        <ul style="padding:10px" *ngFor="let question of questions"  >
           <li (click)="onQuestionClick(question)" class="list-group-item"> {{question.question}}
             <span class="badge">{{question.postedTime | date:"shortDate"}}</span>
             <span style="color:grey" >Posted by : {{question.userName}}</span>
@@ -18,5 +19,7 @@
       </table>
     </div>
   </div>
+  </div>
 </div>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+<!--| paginate:{ itemsPerPage: 6, currentPage: p }-->

@@ -23,5 +23,15 @@ public class UserResource {
 		return Response.status(200).entity(userRoleVO).build();
 
 	}
+	@POST
+	@Path("/user")
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.TEXT_PLAIN)
+	public boolean user(String user) {
+		System.out.println("in user");
+		UserDelegate userDelegate = new UserDelegate();
+		 return userDelegate.user(user);
+
+	}
 
 }

@@ -8,6 +8,9 @@
         <button *ngIf="this.sid==answer.sid_person" (click)="onClickEdit(answer.answerId,answer.answer)"
                 class="editbtn">Edit
         </button>
+        <button *ngIf="this.sid==answer.sid_person" (click)="onClickDelete(answer.answerId)"
+                class="editbtn">Delete
+        </button>
 
       </p>
     </li>

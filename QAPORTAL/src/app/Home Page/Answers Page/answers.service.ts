@@ -9,6 +9,7 @@ export class AnswersService{
   private _urlForAnswers: string = "http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/answers";
   private _urlForQuestion: string =  "http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/questionId";
   private _urlForEdittingAnswer: string = "http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/edit";
+  private _urlForDeletingAnswer: string = "http://192.168.35.54:8080/QAPORTAL-1.0-SNAPSHOT/delete";
 
   constructor(private _http: Http) {
   }
@@ -41,5 +42,13 @@ export class AnswersService{
 
     return this._http.post(this._urlForEdittingAnswer,postData)
       .map((res: Response) => res.json());
+  }
+  onClickDelete(value){
+    let postData=value;
+    var headers = new Headers();
+    headers.append('Content-Type',
+      'text/plain');
+    return this._http.post(this._urlForDeletingAnswer,postData)
+      .map((res: Response) => res.text());
   }
 }
