@@ -6,13 +6,13 @@ public class QuestionsModel {
 	public int questionId;
 	public String userName;
 	public String question;
-	public Date postedTime;
+	public String postedTime;
 	public String category;
 	public QuestionsModel(){
 		
 	}
 	public QuestionsModel(int questionId, String userName, String question,
-			Date postedTime) {
+			String postedTime) {
 		super();
 		this.questionId = questionId;
 		this.userName = userName;
@@ -20,7 +20,7 @@ public class QuestionsModel {
 		this.postedTime = postedTime;
 	}
 	
-	public QuestionsModel(String userName, String question, Date postedTime,
+	public QuestionsModel(String userName, String question, String postedTime,
 			String category) {
 		super();
 		this.userName = userName;
@@ -47,10 +47,10 @@ public class QuestionsModel {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	public Date getPostedTime() {
+	public String getPostedTime() {
 		return postedTime;
 	}
-	public void setPostedTime(Date postedTime) {
+	public void setPostedTime(String postedTime) {
 		this.postedTime = postedTime;
 	}
 

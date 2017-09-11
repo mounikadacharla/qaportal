@@ -29,7 +29,7 @@ public class HomeDAO extends BaseDAO {
 					"select q.sid_question,l.userName,q.question,q.postedtime from mounikad_qaportal_tableforquestions as q inner join mounikad_qaportal_logindetails as l on q.sid_person=l.sid ORDER BY q.postedtime desc");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
-				questions.add(new QuestionsModel(rs.getInt(1),rs.getString("userName"),rs.getString("question"), rs.getDate("postedTime")));
+				questions.add(new QuestionsModel(rs.getInt(1),rs.getString("userName"),rs.getString("question"), rs.getString("postedTime")));
 			}
 		} catch (SQLException e) {
 			log.error(e.getMessage());

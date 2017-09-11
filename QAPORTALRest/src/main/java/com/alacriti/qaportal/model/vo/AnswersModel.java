@@ -1,18 +1,19 @@
 package com.alacriti.qaportal.model.vo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class AnswersModel {
 	public int answerId;
 	public String userName;
 	public String answer;
-	public Date postedTime;
+	public String postedTime;
 	public int sid_person;
 			public AnswersModel(){
 				
 			}
 			public AnswersModel(int answerId, String userName, String answer,
-					Date postedTime, int sid_person) {
+					String postedTime, int sid_person) {
 				super();
 				this.answerId = answerId;
 				this.userName = userName;
@@ -38,10 +39,10 @@ public class AnswersModel {
 			public void setAnswer(String answer) {
 				this.answer = answer;
 			}
-			public Date getPostedTime() {
+			public String getPostedTime() {
 				return postedTime;
 			}
-			public void setPostedTime(Date postedTime) {
+			public void setPostedTime(String postedTime) {
 				this.postedTime = postedTime;
 			}
 			public int getSid_person() {

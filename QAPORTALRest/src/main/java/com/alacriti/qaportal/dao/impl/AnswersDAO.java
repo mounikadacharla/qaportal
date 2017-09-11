@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import com.alacriti.qaportal.bo.imp.AskQuestionBO;
 import com.alacriti.qaportal.model.vo.AnswersModel;
 
@@ -37,7 +35,7 @@ public class AnswersDAO extends BaseDAO {
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				answersInDAO.add(new AnswersModel(rs.getInt(1),rs.getString("userName"),rs.getString("answer"), rs
-						.getDate("postedTime"),rs.getInt(5)));
+						.getString("postedTime"),rs.getInt(5)));
 			}
 		} catch (SQLException e) {
 			log.error(e.getMessage());

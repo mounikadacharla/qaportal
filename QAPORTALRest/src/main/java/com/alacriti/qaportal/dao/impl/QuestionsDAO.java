@@ -34,7 +34,7 @@ public class QuestionsDAO extends BaseDAO {
 			stmt.setInt(1, sid);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
-				questionsInDAO.add(new QuestionsModel(rs.getInt(1),rs.getString("userName"),rs.getString("question"), rs.getDate("postedTime")));
+				questionsInDAO.add(new QuestionsModel(rs.getInt(1),rs.getString("userName"),rs.getString("question"), rs.getString("postedTime")));
 			}
 		} catch (SQLException e) {
 			log.error(e.getMessage());

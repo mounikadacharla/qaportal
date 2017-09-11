@@ -34,7 +34,7 @@ public class SearchDAO extends BaseDAO {
 			stmt.setString(1, "%" + wordSearchingFor + "%");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
-				questionsInSearch.add(new QuestionsModel(rs.getInt(1),rs.getString("userName"),rs.getString("question"), rs.getDate("postedTime")));
+				questionsInSearch.add(new QuestionsModel(rs.getInt(1),rs.getString("userName"),rs.getString("question"), rs.getString("postedTime")));
 			}
 		} catch (SQLException e) {
 			log.error(e.getMessage());
